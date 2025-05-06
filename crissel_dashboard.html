@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Browser Environment Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      transition: background-color 0.5s ease;
+    }
+    header {
+      border-bottom: 2px solid #333;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+  .section-button {
+    text-align: center;
+  }
+    button {
+      text-align: center;
+      margin: 5px;
+    }
+    .info {
+      background: #f9f9f9;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Browser Environment Dashboard</h1>
+  <div>
+    <strong>Complete Name:</strong> Crissel Perias<br>
+    <strong>Sex:</strong> Female<br>
+    <strong>Address:</strong> Calawit San Jose Camarines Sur<br>
+    <strong>Course, Year, Section:</strong> BSIT 2B<br>
+    <strong>Name of School:</strong> Partido State University<br>
+    <strong>Semester and Academic Year:</strong> 2nd Semester, AY 2024-2025<br>
+    <strong>Subject Code and Title:</strong> CS123 – Web Systems and Technologies<br>
+    <strong>Subject Instructor:</strong> Prof. Arjay Abio
+  </div>
+</header>
+
+<section>
+  <div class="section-title">Part A: Browser Information</div>
+  <div class="info" id="browser-info"></div>
+</section>
+
+<section>
+  <div class="section-title">Part B: Page Info & Controls</div>
+  <div class="info" id="page-info"></div>
+  <button onclick="changeTitle()">Change Page Title</button>
+</section>
+
+<section>
+  <div class="section-title">Part C: Navigation Controls</div>
+   <div class="section-button">
+  <button onclick="window.location.reload()">Reload Page</button>
+  <button onclick="window.location.href='https://www.example.com'">Go to example.com</button>
+  <button onclick="window.history.back()">Go Back</button>
+  <button onclick="window.history.forward()">Go Forward</button>
+   </div>
+</section>
+
+<script>
+  // Part A: Browser Information
+  const browserInfo = document.getElementById('browser-info');
+  browserInfo.innerHTML = `
+    <strong>Browser Name & Version:</strong> ${navigator.appName} ${navigator.appVersion}<br>
+    <strong>Platform (OS):</strong> ${navigator.platform}<br>
+    <strong>Java Enabled:</strong> ${navigator.javaEnabled()}<br>
+    <strong>Screen Resolution:</strong> ${screen.width} x ${screen.height}<br>
+    <strong>Available Screen Size:</strong> ${screen.availWidth} x ${screen.availHeight}<br>
+    <strong>Color Depth:</strong> ${screen.colorDepth} bits
+  `;
+
+  // Part B: Page Info
+  const pageInfo = document.getElementById('page-info');
+  function updatePageInfo() {
+    pageInfo.innerHTML = `
+      <strong>Current URL:</strong> ${window.location.href}<br>
+      <strong>Hostname:</strong> ${window.location.hostname}<br>
+      <strong>Page Title:</strong> ${document.title}
+    `;
+  }
+  updatePageInfo();
+
+  // Change title function
+  function changeTitle() {
+    const newTitle = prompt('Enter a new page title:');
+    if (newTitle) {
+      document.title = newTitle;
+      updatePageInfo();
+    }
+  }
+
+  // Part D: Dynamic Styling based on screen width
+  function updateBackgroundColor() {
+    const width = window.innerWidth;
+    if (width < 600) {
+      document.body.style.backgroundColor = 'lightblue';
+    } else if (width >= 600 && width < 992) {
+      document.body.style.backgroundColor = 'lightgreen';
+    } else {
+      document.body.style.backgroundColor = 'orange';
+    }
+  }
+
+  window.addEventListener('load', updateBackgroundColor);
+  window.addEventListener('resize', updateBackgroundColor);
+</script>
+
+</body>
+</html>

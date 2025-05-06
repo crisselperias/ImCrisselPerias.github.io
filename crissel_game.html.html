@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Secret Word Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #F4EBDC;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guess the Secret Word!</h1>
+  <p>Hint: It's a 5-letter fruit.</p>
+  <input type="text" id="guessInput" placeholder="Enter your guess">
+  <button onclick="checkGuess()">Submit Guess</button>
+  <p id="result"></p>
+
+  <script>
+    // Secret word definition
+    const secretWord = "apple";
+
+    // Function to check guess
+    function checkGuess() {
+      const userGuess = document.getElementById("guessInput").value.toLowerCase();
+      const result = document.getElementById("result");
+
+      if (userGuess === secretWord) {
+        result.textContent = "🎉 Correct! You guessed the secret word!";
+        result.style.color = "green";
+      } else {
+        result.textContent = "❌ Try again!";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
